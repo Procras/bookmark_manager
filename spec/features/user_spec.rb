@@ -44,4 +44,12 @@ feature 'user signs up' do
     expect{ sign_up }.not_to change(User, :count)
     expect(page).to have_content 'Email is already taken'
   end
+
+  scenario 'user can sign in' do
+    visit '/user/sign_in'
+    fill_in 'email', with: email
+    fill_in 'password', with: password
+    click_button 'Sign in'
+    expect(page).to have_content('Welcome email')
+  end
 end
